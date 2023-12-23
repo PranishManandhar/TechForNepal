@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/fontawesome-free-6.5.1-web/css/all.css" />
+    <link rel="stylesheet" href="../css/fontawesome-free-6.5.1-web/css/all.min.css" />
+</head>
+<body>
+    <nav>
+        <div class="logo">
+            <a href="../html/index.html"><p>TechForNepal</p></a>
+        </div>
+        <div class="search">
+            <input type="text" class="search-bar" placeholder="Search...">
+            <button class="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+        <div class="options">
+            <li><a href="../html/index.html"><i class="fa-solid fa-house"></i> Home</a></li>
+            <li><a href="blog-home.html"><i class="fa-solid fa-blog"></i> Blogs</a></li>
+            <li><a href="#services"><i class="fa-solid fa-image"></i> Our Services</a></li>
+            <li><a href="contacts.html"><i class="fa-solid fa-user"></i> Contact</a></li>
+        </div>
+    </nav>
+
+
+    <div style=" margin-bottom: 20px; background-color: white; width: 20vw; margin-left: 600px;">
+        <p class="title" style="margin-top: 70px;">Mail To US</p>
+    </div>
+    <div class="Contact" id="Contact">
+        <div class="card2">
+                <input type="text" placeholder="Name" class="search1-bar txt-box" id="name"> <br>
+                <input type="email" placeholder="email" class="search1-bar txt-box" id="email"> <br>
+                <input type="text" placeholder="Message..." class="search1-bar txt-box" id="message"> <br>
+                <button class="btn" style="margin-left: 0%; margin-bottom: 10px;" onclick="postData()"> Send Mail</button> <br>
+        </div>
+    </div>
+
+    <footer>
+        <div class="column">
+            <h2>TechForNepal</h2>
+            <div class="row"><a href="#">Facebook</a></div>
+            <div class="row"><a href="#">Linkeden</a></div>
+            <div class="row"><a href="#">Copyright &copy; 2023 by TechForNepal</a></div>
+        </div>
+
+        <div class="column">
+            <div class="row"><a href="#">Phone: xxx-xxx-xxxx</a></div>
+            <div class="row"><a href="#">Email: techfornepal@gmail.com</a></div>
+            <div class="row"><a href="#">Head office: Sallaghari bhaktapur,Nepal</a></div>
+        </div>
+
+        <div class="column">
+            <br>
+            <br>
+            <br>
+            <div class="row"><a href="contacts.html">Back to Top</a></div>
+        </div>
+    </footer>
+</body>
+
+<script>
+    async function postData() {
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const message = document.getElementById('message').value;
+
+        axios.post("http://localhost:3000/addcommentdata", {
+            name: name,
+            email: email,
+            message: message
+        })
+            .then((response) => {
+                // console.log(response);
+                alert("your comment is send to us");
+            })
+    }
+</script>
+</html>

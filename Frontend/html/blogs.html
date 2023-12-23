@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fetch Example</title>
+  <style>
+    /* Add some basic styling */
+    #card {
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin: 10px;
+      width: 300px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Form for adding data -->
+<form id="dataForm">
+  <label for="name">Name:</label>
+  <input type="text" id="name" name="name" required>
+
+  <label for="Email">Email:</label>
+  <input type="email" id="email" name="email" required>
+  <label for="message">message:</label>
+  <input type="text" id="message" name="message" required>
+
+  <button type="button" onclick="postData()">Submit</button>
+</form>
+
+<!-- Display posted data in a card -->
+<div id="card"></div>
+
+<script>
+  async function postData() {
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const message = document.getElementById('message').value;
+
+    const response = await fetch('http://localhost:3000/adddata', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ name,email, message }),
+    });
+
+    const data = await response.json();
+    console.log(data);
+    // Display posted data in a card
+    const cardDiv = document.getElementById('card');
+    cardDiv.innerHTML = `
+      <div id="card">
+        <p>Name: ${data.result.name}</p>
+        <p>message: ${data.result.message}</p>
+      </div>
+    `;
+  }
+</script>
+
+</body>
+</html>
